@@ -1,0 +1,32 @@
+<div class="container-overview">
+    <div class="p-grid p-p-6">
+        <div class="p-col-6" *ngFor="let container of containers">
+            <div class="p-card p-component mb-3 p-p-4">
+                <div class="p-grid p-align-center p-justify-between">
+
+                    <div class="p-col">
+                        <span class="block text-500 font-medium mb-2">{{ container.name }}</span>
+                        <div class="text-900 font-bold text-xl">{{ container.state }}</div>
+                    </div>
+                    <div class="flex align-items-center justify-content-center bg-blue-100 border-round " [ngStyle]="{width: '2.5rem', height: '2.5rem'}" style="text-align: right;">
+                        <i class="pi pi-box text-blue-500 text-xl"></i>
+                    </div>
+                </div>
+                <div class="p-mt-3">
+                    <div class="p-grid p-align-center">
+                        <div class="p-col text-green-500 font-medium">{{ container.status }}</div>
+                        <div class="p-col text-500" style="text-align: right;">{{ container.image }}</div>
+                    </div>
+                    <div *ngIf="container.ports.length" class="p-mt-3">
+                        <h5 class="text-900">Ports:</h5>
+                        <ul class="p-pl-3">
+                            <li *ngFor="let port of container.ports">
+                                {{ port.ip }}:{{ port.public_port }} -> {{ port.private_port }} ({{ port.type }})
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

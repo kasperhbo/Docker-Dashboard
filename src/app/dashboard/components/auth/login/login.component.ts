@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
     selector: 'app-login',
@@ -20,10 +21,15 @@ export class LoginComponent {
     password!: string;
     username!: string;
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService, private authService: AuthService) {
+        if(this.authService.isLoggedIn()){
+            this.authService.logout();
+        }
+    }
 
     login() {
         console.log('Email:', this.username);
         console.log('Password:', this.password);
+        this.authService.login(this.username, this.password);
     }
 }
