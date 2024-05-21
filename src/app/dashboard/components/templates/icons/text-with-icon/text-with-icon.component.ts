@@ -7,5 +7,5 @@ import {NgIcon} from "@ng-icons/core";
   styleUrl: './text-with-icon.component.scss'
 })
 export class TextWithIconComponent {
-    
+
 }
