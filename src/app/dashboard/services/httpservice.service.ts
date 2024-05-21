@@ -1,30 +1,24 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {ClassType} from "jackson-js/dist/@types";
 import {map} from "rxjs/operators";
 import {JacksonParseUtil} from "../utils/jackson-parse-utils";
+import {Params} from "@angular/router";
+import {ObjectMapper} from "jackson-js";
 
 @Injectable({
     providedIn: 'root'
 })
 export class HttpserviceService {
 
+    protected objectMapper = new ObjectMapper();
 
     constructor(protected http: HttpClient, protected authService: AuthService, protected classType: ClassType<any>) {
     }
 
     protected getList(url: string, classType = this.classType): Observable<any[]> {
-        return this.http.get<any[]>(url, {headers: this.authService.getHeaders()}).pipe(
-            map(response => {
-                // @ts-ignore
-                return JacksonParseUtil.parseJSONObjectArray(response.containers, classType);
-            })
-        )
-    }
-
-    protected getSingle(url: string, classType = this.classType): Observable<any> {
         if (!this.authService.isAuthenticated()) {
             return new Observable<any[]>(
                 observer => {
@@ -34,14 +28,22 @@ export class HttpserviceService {
         }
         return this.http.get<any[]>(url, {headers: this.authService.getHeaders()}).pipe(
             map(response => {
-                return JacksonParseUtil.parseJSONObject(response, classType);
+                // @ts-ignore
+                return JacksonParseUtil.parseJSONObjectArray(response.containers, classType);
             })
         )
     }
 
+    protected getSingle(url: string, pathParams: Params,
+                        classType = this.classType): Observable<any> {
+        return new Observable(error => {
+            error.error('Not implemented');
+        })
+    }
+
 
     // @ts-ignore
-    protected post(url: string, data:any): Observable<any> {
+    protected post(url: string, data: any): Observable<any> {
         if (!this.authService.isAuthenticated()) {
             return new Observable<any[]>(
                 observer => {

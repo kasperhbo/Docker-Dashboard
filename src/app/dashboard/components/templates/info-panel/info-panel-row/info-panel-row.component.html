@@ -1,10 +1,27 @@
 <div class="grid mb-3">
     <div class="col-3">
-        <strong>
-            {{ label }}
-        </strong>
+        <ng-container *ngIf="customHeaderTemplate; else defaultHeader">
+            <ng-container *ngTemplateOutlet="customHeaderTemplate; context: {$implicit: label}">
+            </ng-container>
+        </ng-container>
+        <ng-template #defaultHeader>
+            <strong *ngIf="label">
+                {{ label }}
+            </strong>
+        </ng-template>
     </div>
     <div class="col-9 info-panel-row-value">
-        {{ value }}
+<!--        <div *ngIf="value">-->
+<!--            {{ value }}-->
+<!--        </div>-->
+        <ng-container *ngIf="customValueTemplate; else defaultValue">
+            <ng-container *ngTemplateOutlet="customValueTemplate; context: {$implicit: value}">
+            </ng-container>
+        </ng-container>
+        <ng-template #defaultValue>
+            <div *ngIf="value">
+                {{ value }}
+            </div>
+        </ng-template>
     </div>
 </div>

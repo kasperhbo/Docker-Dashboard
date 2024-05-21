@@ -3,6 +3,7 @@ import {ContainerListComponent} from "./list/container-list.component";
 import {Container} from "./models/container";
 import {ContainerDetailComponent} from "./detail/container-detail.component";
 import {ContainersService} from "./service/containers.service";
+import {DockerContainerDetails} from "./models/container-detailed";
 
 @Component(
     {
@@ -16,9 +17,9 @@ export class ContainerComponent implements OnInit, OnDestroy{
     @ViewChild('containerDetailComponent') containerDetail: ContainerDetailComponent;
 
     containers: Container[] = [];
-    selectedContainer: Container = undefined;
+    selectedContainer: DockerContainerDetails = undefined;
 
-    constructor(private containersService: ContainersService) {
+    constructor(private containerService: ContainersService) {
 
     }
 
@@ -31,11 +32,11 @@ export class ContainerComponent implements OnInit, OnDestroy{
     }
 
     onSelectContainer(event: Container) {
-        this.selectedContainer = event;
-        this.showDialog();
-    }
-
-    showDialog() {
-        this.containerDetail.showDialog();
+        this.containerService.getSingle(event.id).subscribe((container: DockerContainerDetails) => {
+            this.selectedContainer = container;
+            this.containerDetail.show(this.selectedContainer);
+            console.log(this.selectedContainer.networkSettings);
+            console.log(this.selectedContainer);
+        });
     }
 }

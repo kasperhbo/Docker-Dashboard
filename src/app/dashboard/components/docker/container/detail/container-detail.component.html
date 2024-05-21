@@ -1,4 +1,4 @@
-<p-dialog (keydown)="keyDown($event)" (onHide)="onHide()" *ngIf="container" [(visible)]="display"
+<p-dialog (onHide)="onHide()" [(visible)]="display"
           [baseZIndex]="10000" [maximizable]="true" [modal]="true" [style]="{width: '80vw'}"
           closeOnEscape="true"
           header="Container Details">
@@ -18,6 +18,116 @@
             <button class="button-header p-button p-disabled" icon="pi pi-pencil" label="Duplicate/Edit"
                     pButton></button>
         </div>
+    </template-info-panel>
+    <!--</p-dialog>-->
+
+    <!--    Container Status    -->
+    <template-info-panel title="Container status" titleIcon="pi-box">
+        <template-info-panel-row [value]="container?.id" label="ID"></template-info-panel-row>
+        <template-info-panel-row [value]="container?.name" label="Name"></template-info-panel-row>
+
+        <template-info-panel-row *ngIf=container?.networkSettings.ipAddress
+                                 [value]="container?.networkSettings?.ipAddress" label="IP"></template-info-panel-row>
+
+        <template-info-panel-row [customValueTemplate]="customValue" [value]="container?.getStatus" label="Status">
+            <ng-template #customValue>
+                <div *ngIf="container?.getStatus">
+                    <span [ngClass]="container.isRunning ? 'p-tag-success' : 'p-tag-danger'"
+                          class="p-tag ">{{ container?.getStatus }}</span>
+                </div>
+            </ng-template>
+        </template-info-panel-row>
+
+        <template-info-panel-row [value]="container?.getCreatedFormatted" label="Created"></template-info-panel-row>
+        <template-info-panel-row [value]="container?.getFinishedAtFormatted" label="Finished"></template-info-panel-row>
+
+        <div class="p-fluid mt-6 pl-0" style="padding-right: 6px; display: ruby">
+            <template-info-panel-footer icon="bootstrapTerminal" label="Logs"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapInfoCircle" label="Inspect"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapBarChart" label="Stats"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapTerminal" label="Console"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapPaperclip" label="Attach"></template-info-panel-footer>
+        </div>
+    </template-info-panel>
+
+    <!--    Access control      -->
+    <template-info-panel title="Acces Control" titleIcon="pi-heart-fill">
+    </template-info-panel>
+
+
+    <!--    Container Detail    -->
+    <template-info-panel title="Container Details" titleIcon="pi-list">
+        <template-info-panel-row [value]="container?.image" label="image"></template-info-panel-row>
+        <template-info-panel-row label="Port Config" [customValueTemplate]="customValuePort">
+            <ng-template #customValuePort>
+                <div *ngFor="let portConfig  of container?.portsSimpleConfigArray">
+                    <span>{{ portConfig.hostIp }}:{{ portConfig.hostPort }}-->{{ portConfig.containerPort }}</span>
+                </div>
+            </ng-template>
+        </template-info-panel-row>
+        <template-info-panel-row [customValueTemplate]="customValueEnv" label="Enviroment Config">
+            <ng-template #customValueEnv>
+                <div *ngIf="container?.env">
+                    <p-table
+                        [tableStyle]="{ 'min-width': '50rem' }"
+                        [value]="container.getEnvAsArray"
+                        styleClass="p-datatable-gridlines">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template let-env pTemplate="body">
+                            <tr>
+                                <td>{{ env.key }}</td>
+                                <td>{{ env.value }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </ng-template>
+        </template-info-panel-row>
+
+        <template-info-panel-row [customValueTemplate]="customValueLabels" label="labels">
+            <ng-template #customValueLabels>
+                <div *ngIf="container?.labels">
+                    <p-table
+                        [tableStyle]="{ 'min-width': '50rem' }"
+                        [value]="container.getLabelsArray"
+                        styleClass="p-datatable-gridlines">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template let-label pTemplate="body">
+                            <tr>
+                                <td>{{ label.key }}</td>
+                                <td>{{ label.value }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </ng-template>
+        </template-info-panel-row>
+
+        <div class="p-fluid mt-6 pl-0" style="padding-right: 6px; display: ruby">
+            <template-info-panel-footer icon="bootstrapTerminal" label="Logs"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapInfoCircle" label="Inspect"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapBarChart" label="Stats"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapTerminal" label="Console"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapPaperclip" label="Attach"></template-info-panel-footer>
+        </div>
+    </template-info-panel>
+
+    <!--    Volumes     -->
+    <template-info-panel title="Volumes" titleIcon="pi-database">
+    </template-info-panel>
+
+    <!--    Connected Networks    -->
+    <template-info-panel title="Connected networks" titleIcon="pi-share-alt">
     </template-info-panel>
 
 
@@ -66,49 +176,5 @@
         </pre>
         </app-snippet>
 
-    </template-info-panel>
-
-
-    <!--    Container Status    -->
-    <template-info-panel title="Container status" titleIcon="pi-box">
-        <template-info-panel-row [value]="container?.id" label="ID"></template-info-panel-row>
-        <template-info-panel-row [value]="container?.name" label="Name"></template-info-panel-row>
-        <template-info-panel-row [value]="container.state" label="State"></template-info-panel-row>
-        <template-info-panel-row [value]="container?.command" label="CMD"></template-info-panel-row>
-        <div class="p-fluid mt-6 pl-0" style="padding-right: 6px; display: ruby">
-            <template-info-panel-footer icon="bootstrapTerminal" label="Logs"></template-info-panel-footer>
-            <template-info-panel-footer icon="bootstrapInfoCircle" label="Inspect"></template-info-panel-footer>
-            <template-info-panel-footer icon="bootstrapBarChart" label="Stats"></template-info-panel-footer>
-            <template-info-panel-footer icon="bootstrapTerminal" label="Console"></template-info-panel-footer>
-            <template-info-panel-footer icon="bootstrapPaperclip" label="Attach"></template-info-panel-footer>
-        </div>
-    </template-info-panel>
-
-    <!--    Access control      -->
-    <template-info-panel title="Acces Control" titleIcon="pi-heart-fill">
-    </template-info-panel>
-
-
-    <!--    Container Detail    -->
-    <template-info-panel title="Container Details" titleIcon="pi-list">
-        <template-info-panel-row [value]="container?.id" label="ID"></template-info-panel-row>
-        <template-info-panel-row [value]="container?.name" label="Name"></template-info-panel-row>
-        <template-info-panel-row [value]="container.state" label="State"></template-info-panel-row>
-        <template-info-panel-row [value]="container?.command" label="CMD"></template-info-panel-row>
-        <div class="p-fluid mt-6 pl-0" style="padding-right: 6px; display: ruby">
-            <template-info-panel-footer icon="bootstrapTerminal" label="Logs"></template-info-panel-footer>
-            <template-info-panel-footer icon="bootstrapInfoCircle" label="Inspect"></template-info-panel-footer>
-            <template-info-panel-footer icon="bootstrapBarChart" label="Stats"></template-info-panel-footer>
-            <template-info-panel-footer icon="bootstrapTerminal" label="Console"></template-info-panel-footer>
-            <template-info-panel-footer icon="bootstrapPaperclip" label="Attach"></template-info-panel-footer>
-        </div>
-    </template-info-panel>
-
-    <!--    Volumes     -->
-    <template-info-panel title="Volumes" titleIcon="pi-database">
-    </template-info-panel>
-
-    <!--    Connected Networks    -->
-    <template-info-panel title="Connected networks" titleIcon="pi-share-alt">
     </template-info-panel>
 </p-dialog>

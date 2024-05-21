@@ -5,10 +5,10 @@ export class ApiSettings {
     }
 
     static get DOCKER_HOST(): string {
-        return 'http://localhost:9000/api/docker/';
+        return 'http://localhost:9000/api/docker';
     }
 
     static get DOCKER_CONTAINER_ENDPOINT(): string {
-        return this.DOCKER_HOST + 'container/';
+        return this.DOCKER_HOST + '/container';
     }
 }

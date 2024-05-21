@@ -34,7 +34,9 @@
                 <a>
                     <span class="font-medium"
                           [ngClass]="container.state === 'running' ? 'text-green-500' : 'text-red-500'">
-                        {{ container?.status }}
+                        {{
+                            container?.status
+                        }}
                     </span>
                 </a>
                 <div class="p-text-secondary" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
