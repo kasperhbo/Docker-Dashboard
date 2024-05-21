@@ -1,5 +1,5 @@
-import { Injectable, effect, signal } from '@angular/core';
-import { Subject } from 'rxjs';
+import {effect, Injectable, signal} from '@angular/core';
+import {Subject} from 'rxjs';
 
 export interface AppConfig {
     inputStyle: string;
@@ -28,7 +28,7 @@ export class LayoutService {
         inputStyle: 'outlined',
         menuMode: 'static',
         colorScheme: 'light',
-        theme: 'fluent-light',
+        theme: 'bootstrap4-dark-blue',
         scale: 14,
     };
 
@@ -114,7 +114,7 @@ export class LayoutService {
     }
 
     onConfigUpdate() {
-        this._config = { ...this.config() };
+        this._config = {...this.config()};
         this.configUpdate.next(this.config());
     }
 
@@ -124,17 +124,17 @@ export class LayoutService {
         const themeLinkHref = themeLink.getAttribute('href')!;
         const newHref = themeLinkHref
             .split('/')
-            .map((el) =>
-                el == this._config.theme
-                    ? (el = config.theme)
-                    : el == `theme-${this._config.colorScheme}`
-                    ? (el = `theme-${config.colorScheme}`)
-                    : el
+            .map(
+                (el) =>
+                    el == this._config.theme
+                        ? (el = config.theme) : el == `theme-${this._config.colorScheme}`
+                            ? (el = `theme-${config.colorScheme}`) : el
             )
             .join('/');
 
         this.replaceThemeLink(newHref);
     }
+
     replaceThemeLink(href: string) {
         const id = 'theme-css';
         let themeLink = <HTMLLinkElement>document.getElementById(id);

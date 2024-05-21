@@ -1,61 +1,12 @@
-//.container-details {
-//    padding: 1rem;
-//    background-color: #1e1e1e;
-//    color: #ffffff;
-//}
-//
-//.actions {
-//    display: flex;
-//    gap: 0.5rem;
-//    margin-bottom: 1rem;
-//}
-//
-//.container-status-panel {
-//    background-color: #2e2e2e;
-//}
-//
-//.p-buttonset .p-button {
-//    margin-right: 0.5rem;
-//}
-//
-//.p-fluid .p-grid > .p-col-12 {
-//    padding: 0.5rem;
-//}
-
-.container-details {
-    padding: 1rem;
-    background-color: #1e1e1e;
-    color: #ffffff;
-}
-
 .actions {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
-.container-status-table {
-    margin-top: 1rem;
-}
-
-.container-status-table .p-datatable {
-    background-color: #2e2e2e;
-}
-
-.container-status-table .p-datatable-header {
-    font-weight: bold;
-    background-color: #ff0000;
-    color: #fff;
-}
-
-.container-status-table .p-datatable-tbody > tr > td {
-    border: 1px solid #444;
-}
-
 .p-fluid .p-grid > .p-col-12 {
     padding: 0.5rem;
 }
-
 
 .container-action{
     display: flex;
@@ -66,27 +17,10 @@
     transition: background-color 0.3s ease;
 }
 
-.card-title-icon{
-    background-color: var(--blue-100);
-}
-
 .card-title-text {
     display: flex;
     align-items: center;
     font-weight: 1200;
     font-size: 1.5rem;
     color: var(--text-900);
-}
-
-:host ::ng-deep .p-button .button-header{
-    font-size:2px;  //your font size here
-}
-
-.button-action{
-    transition: color 0.3s ease;
-}
-
-.button-action:hover{
-    color: var(--blue-800);
-    cursor: pointer;
 }

@@ -31,5 +31,7 @@ import {SnippetComponent} from "./snippet/snippet.component";
 
 })
 export class TemplateModule {
-
+    constructor(){
+        console.trace('TemplateModule');
+    }
 }

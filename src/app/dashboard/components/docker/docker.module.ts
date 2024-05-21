@@ -9,7 +9,6 @@ import {TableModule} from "primeng/table";
 import {StyleClassModule} from "primeng/styleclass";
 import {PanelMenuModule} from "primeng/panelmenu";
 import {ButtonModule} from "primeng/button";
-import {ContainerModule} from "./container/container.module";
 
 
 @NgModule({

@@ -20,9 +20,7 @@ import {
 import {PanelModule} from "primeng/panel";
 import {CheckboxModule} from "primeng/checkbox";
 import {TooltipModule} from "primeng/tooltip";
-import {BrowserModule} from "@angular/platform-browser";
 import {InputSwitchModule} from "primeng/inputswitch";
-import {TemplateModule} from "../../templates/template.module";
 import {NgIconsModule} from "@ng-icons/core";
 import {
     bootstrapBarChart,
@@ -30,6 +28,7 @@ import {
     bootstrapInfoCircle, bootstrapPaperclip,
     bootstrapTerminal
 } from "@ng-icons/bootstrap-icons";
+import {TemplateModule} from "../../templates/template.module";
 
 @NgModule({
     imports: [
@@ -46,6 +45,7 @@ import {
         ChipModule,
         CardModule,
         InputSwitchModule,
+        TemplateModule,
         NgIconsModule.withIcons(
             {
                 bootstrapFileEarmarkText,
@@ -55,28 +55,32 @@ import {
                 bootstrapPaperclip,
             }
         ),
-        TemplateModule,
 
     ],
     exports: [
         ContainerListComponent,
-        ContainerComponent,
         ContainerCardComponent,
         ContainerDetailComponent,
-        ContainerTemplateComponent
+        ContainerTemplateComponent,
+        GetStateTextPipe,
+        GetIsoDatePipe,
+        TrimContainerNamePipe,
+
+        ContainerComponent,
     ],
     providers: [
         ContainersService
     ],
     declarations: [
         ContainerListComponent,
-        ContainerComponent,
         ContainerCardComponent,
         ContainerDetailComponent,
         ContainerTemplateComponent,
         GetStateTextPipe,
         GetIsoDatePipe,
-        TrimContainerNamePipe
+        TrimContainerNamePipe,
+
+        ContainerComponent,
     ],
 })
 export class ContainerModule {

@@ -7,32 +7,21 @@
                 <div class="">{{ container?.state }}</div>
                 <div class="flex pt-2">
                     <div
-                        class="flex align-items-center justify-content-center border-round mr-3 container-action"
-                        [ngClass]="container.canStart ?
-                            ['can-play', 'cursor-pointer'] :
-                            'cant-play'"
+                        class="flex align-items-center justify-content-center border-round mr-3 container-action p-button-success  p-button"
                         [ngStyle]="{width: '2rem', height: '2rem'}"
                         (click)="startContainer(container); $event.stopPropagation()"
                     >
                         <i class="pi pi-play text-xl"
-                           [ngClass]="container.canStart ?
-                            ['icon-can-start',  'cursor-pointer'] :
-                            'icon-cant-start'"
                         >
                         </i>
                     </div>
                     <div
-                        class="flex align-items-center justify-content-center border-round mr-3"
-                        [ngClass]="container.canStop ?
-                            ['can-stop', 'cursor-pointer'] :
-                            'cant-stop'"
+                        class="flex align-items-center justify-content-center border-round mr-3  p-button-danger  p-button"
                         [ngStyle]="{width: '2rem', height: '2rem'}"
                         (click)="stopContainer(container); $event.stopPropagation()"
                     >
                         <i class="pi pi-stop text-xl"
-                           [ngClass]="container.canStop ?
-                            ['icon-can-stop',  'cursor-pointer'] :
-                            'icon-cant-stop'"
+
                         >
                         </i>
                     </div>
