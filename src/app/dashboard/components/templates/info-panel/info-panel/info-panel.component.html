@@ -1,0 +1,25 @@
+<div class="row mb-4">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <div class="card p-pl-0">
+            <div class="card-header mb-3 border-bottom-1" style="width: 100% !important;">
+                <div class="card-title">
+                    <div class="flex col-7 pl-0">
+                        <div
+                            [ngStyle]="{width: '2rem', height: '2rem'}"
+                            class="flex align-items-center justify-content-center border-round mr-3 container-action card-title-icon cursor-pointer">
+                            <i class="pi {{ titleIcon }} text-blue-500 text-xl"></i>
+                        </div>
+                        <div class="card-title-text">
+                            {{ title }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-fluid p-pl-0">
+            <ng-content></ng-content>
+            </div>
+        </div>
+    </div>
+</div>
+
