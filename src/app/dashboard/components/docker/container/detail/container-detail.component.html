@@ -1,0 +1,198 @@
+<p-dialog (keydown)="keyDown($event)" (onHide)="onHide()" *ngIf="container" [(visible)]="display"
+          [baseZIndex]="10000" [maximizable]="true" [modal]="true" [style]="{width: '80vw'}"
+          closeOnEscape="true"
+          header="Container Details">
+    <div class="row mb-4">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="card p-pl-0">
+                <div class="card-header mb-3 border-bottom-1" style="width: 100% !important;">
+                    <div class="card-title">
+                        <div class="flex col-7 pl-0">
+                            <div
+                                [ngStyle]="{width: '2rem', height: '2rem'}"
+                                class="flex align-items-center justify-content-center border-round mr-3 container-action card-title-icon cursor-pointer">
+                                <i class="pi pi-cog text-blue-500 text-xl"></i>
+                            </div>
+                            <div class="card-title-text">
+                                Actions
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 ">
+                        <div class="p-buttonset justify-content-between" style="font-size:20px !important">
+                            <button class="button-header p-button-success" icon="pi pi-play" label="Start"
+                                    pButton></button>
+                            <button class="button-header p-button-danger" icon="pi pi-stop" label="Stop"
+                                    pButton></button>
+                            <button class="button-header p-button p-disabled" icon="pi pi-times" label="Kill"
+                                    pButton></button>
+                            <button class="button-header p-button p-disabled" icon="pi pi-sync" label="Restart"
+                                    pButton></button>
+                            <button class="button-header p-button p-disabled" icon="pi pi-pause" label="Pause"
+                                    pButton></button>
+                            <button class="button-header p-button-success p-disabled" icon="pi pi-play" label="Resume"
+                                    pButton></button>
+                            <button class="button-header p-button-danger p-disabled" icon="pi pi-trash" label="Remove"
+                                    pButton></button>
+                            <button class="button-header p-button p-disabled" icon="pi pi-sync" label="Recreate"
+                                    pButton></button>
+                            <button class="button-header p-button p-disabled" icon="pi pi-pencil" label="Duplicate/Edit"
+                                    pButton></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--    Container Status    -->
+    <template-info-panel title="Container status" titleIcon="pi-box">
+        <template-info-panel-row [value]="container?.id" label="ID"></template-info-panel-row>
+        <template-info-panel-row [value]="container?.name" label="Name"></template-info-panel-row>
+        <template-info-panel-row [value]="container.state" label="State"></template-info-panel-row>
+        <template-info-panel-row [value]="container?.command" label="CMD"></template-info-panel-row>
+        <div class="p-fluid mt-6 pl-0">
+            <template-info-panel-footer icon="bootstrapFileEarmarkText" label="Logs"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapInfoCircle"      label="Inspect"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapBarChart"        label="Stats"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapTerminal"        label="Console"></template-info-panel-footer>
+            <template-info-panel-footer icon="bootstrapPaperclip"       label="Attach"></template-info-panel-footer>
+        </div>
+    </template-info-panel>
+
+    <!--    Access control    -->
+    <div class="row mb-4">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="card p-pl-0">
+                <div class="card-header mb-3 border-bottom-1" style="width: 100% !important;">
+                    <div class="card-title">
+                        <div class="flex col-7 pl-0">
+                            <div
+                                [ngStyle]="{width: '2rem', height: '2rem'}"
+                                class="flex align-items-center justify-content-center border-round mr-3 container-action card-title-icon cursor-pointer">
+                                <i class="pi pi-eye text-blue-500 text-xl"></i>
+                            </div>
+                            <div class="card-title-text">
+                                Access control
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--    Container Detail    -->
+    <div class="row mb-4">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="card p-pl-0">
+                <div class="card-header mb-3 border-bottom-1" style="width: 100% !important;">
+                    <div class="card-title">
+                        <div class="flex col-7 pl-0">
+                            <div
+                                [ngStyle]="{width: '2rem', height: '2rem'}"
+                                class="flex align-items-center justify-content-center border-round mr-3 container-action card-title-icon cursor-pointer">
+                                <i class="pi pi-list text-blue-500 text-xl"></i>
+                            </div>
+                            <div class="card-title-text">
+                                Container details
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-fluid mt-0 p-pl-0">
+
+                </div>
+                <div class="p-fluid mt-6 pl-0">
+                    <span class="pr-4">
+                        <a class="button-action">
+                             <span class="pi pi-file"></span>
+                            Logs
+                        </a>
+                    </span>
+
+                    <span class="pr-4">
+                             <a class="button-action">
+                                <span class="pi pi-info"></span>
+                                Inspect
+                            </a>
+                        </span>
+
+                    <span class="pr-4">
+                             <a class="button-action">
+                                <span class="pi pi-chart-bar"></span>
+                                Stats
+                            </a>
+                        </span>
+
+                    <span class="pr-4">
+                             <a class="button-action">
+                                <span class="pi pi-terminal"></span>
+                                Console
+                            </a>
+                        </span>
+
+                    <span class="pr-4">
+                              <a class="button-action">
+                                <span class="pi pi-paperclip"></span>
+                                Attach
+                            </a>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--    Volumes    -->
+    <div class="row mb-4">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="card p-pl-0">
+                <div class="card-header mb-3 border-bottom-1" style="width: 100% !important;">
+                    <div class="card-title">
+                        <div class="flex col-7 pl-0">
+                            <div
+                                [ngStyle]="{width: '2rem', height: '2rem'}"
+                                class="flex align-items-center justify-content-center border-round mr-3 container-action card-title-icon cursor-pointer">
+                                <i class="pi pi-database text-blue-500 text-xl"></i>
+                            </div>
+                            <div class="card-title-text">
+                                Volumes
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--    Connected Networks    -->
+    <div class="row mb-4">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="card p-pl-0">
+                <div class="card-header mb-3 border-bottom-1" style="width: 100% !important;">
+                    <div class="card-title">
+                        <div class="flex col-7 pl-0">
+                            <div
+                                [ngStyle]="{width: '2rem', height: '2rem'}"
+                                class="flex align-items-center justify-content-center border-round mr-3 container-action card-title-icon cursor-pointer">
+                                <i class="pi pi-share-alt text-blue-500 text-xl"></i>
+                            </div>
+                            <div class="card-title-text">
+                                Connected networks
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</p-dialog>
+

@@ -1,37 +1,11 @@
-.container-overview {
-    padding: 1rem;
+.card-title-icon{
+    background-color: var(--blue-100);
 }
 
-.p-card {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.p-card:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.p-card .block {
-    display: block;
-}
-
-.p-card h5 {
-    margin-bottom: 0.5rem;
-}
-
-.p-card ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.p-card ul li {
-    padding: 0.25rem 0;
-}
-
-.text-2xl {
+.card-title-text {
+    display: flex;
+    align-items: center;
+    font-weight: 1200;
     font-size: 1.5rem;
-}
-
-.text-green-500 {
-    color: #28a745;
+    color: var(--text-900);
 }

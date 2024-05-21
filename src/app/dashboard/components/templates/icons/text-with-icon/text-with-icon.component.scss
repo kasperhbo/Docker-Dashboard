@@ -1,0 +1,24 @@
+.aligned-with-icon {
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+    /* optional */
+}
+
+.aligned-with-icon-relative {
+    position: relative;
+    top: -5px;
+    margin-left: 5px;
+    /* optional */
+}
+
+.with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.with-icon-large-text {
+    display: flex;
+    align-items: center;
+    font-size:48px;
+}

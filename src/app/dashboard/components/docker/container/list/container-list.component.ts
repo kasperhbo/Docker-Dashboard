@@ -1,22 +1,57 @@
-import {Component} from '@angular/core';
-import {ContainersService} from "../../../../services/docker/containers.service";
-import {Container} from "../../../../models/docker/container";
-import {NgForOf, NgIf, NgStyle} from "@angular/common";
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Container} from "../models/container";
+import {ContainersService} from "../service/containers.service";
+import {interval, Subscription} from "rxjs";
 
 @Component({
-    selector: 'app-container-list',
+    selector: 'docker-container-list',
     templateUrl: './container-list.component.html',
-    styleUrl: './container-list.component.scss'
+    styleUrls: ['./container-list.component.scss']
 })
-export class ContainerListComponent {
-    containers: Container[] = [];
+export class ContainerListComponent implements OnInit, OnDestroy {
+    @Input() private containers: Container[] = [];
+    @Output() onSelectContainer = new EventEmitter<Container>();
+
+    private fetchInterval: number = 3000;
+    private fetchIntervalSubscription: any;
 
     constructor(private containersService: ContainersService) {
-        this.containersService.getList().subscribe(containers => {
-            this.containers = containers;
-        });
+    }
 
-        console.trace('ContainerListComponent.constructor', this.containers);
+    get containerList(): Container[] {
+        return this.containers;
+    }
+
+    ngOnInit() {
+        this.fetchContainers();
+        this.fetchIntervalSubscription = interval(this.fetchInterval).subscribe(() => this.fetchContainers());
+    }
+
+    ngOnDestroy() {
+        // Unsubscribe to avoid memory leaks
+        if (this.fetchIntervalSubscription) {
+            this.fetchIntervalSubscription.unsubscribe();
+        }
+    }
+
+    private fetchContainers() {
+        this.containersService.getList().subscribe(
+            (containers: Container[]) => {
+                this.containers = containers;
+            },
+            error => {
+                console.error('Error fetching containers', error);
+            }
+        );
+    }
+
+
+    trackByContainerId(index: number, container: Container): string {
+        return container.id;
+    }
+
+    onClick(container: Container) {
+        this.onSelectContainer.emit(container);
     }
 
 }

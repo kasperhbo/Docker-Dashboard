@@ -1,0 +1,77 @@
+
+//
+//.container-card:hover {
+//    background-color: var(--gray-100);
+//    transform: scale(1.02);
+//}
+//
+//.cursor-pointer {
+//    cursor: pointer !important;
+//}
+//
+//.container-card-title{
+//    overflow: hidden;
+//    text-overflow: ellipsis;
+//    white-space: nowrap;
+//}
+//
+
+.container-card{
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease , transform 0.3s ease;
+}
+
+.can-play {
+    background-color: var(--blue-100);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.can-play:hover {
+    background-color: #b0d6f7;
+
+}
+
+.cant-play {
+    background-color: #e0e0e0;
+}
+
+.icon-can-start:hover{
+    color: #388e3c;
+    transition: color 0.3s ease, color 0.3s ease;
+}
+
+.icon-can-start{
+    color: var(--green-500);
+}
+
+.icon-cant-start{
+    color: #9e9e9e;
+}
+
+.can-stop {
+    background-color: #f28b82;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cant-stop {
+    background-color: #e0e0e0;
+}
+
+.can-stop:hover {
+    background-color: #e57373;
+}
+.icon-can-stop{
+    color: #d32f2f;
+    transition: color 0.3s ease, color 0.3s ease;
+}
+
+.icon-can-stop:hover{
+    color: #c62828;
+}
+
+.icon-cant-stop{
+    color: #9e9e9e;
+}
+
+

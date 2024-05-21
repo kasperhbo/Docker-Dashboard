@@ -1,0 +1,11 @@
+<docker-container-list #containerListComponent
+                       (onSelectContainer)="this.onSelectContainer($event)"
+                       [containers]="this.containers"
+>
+</docker-container-list>
+
+<docker-container-detail #containerDetailComponent
+                         [selectedContainer]="this.selectedContainer"
+>
+</docker-container-detail>
+

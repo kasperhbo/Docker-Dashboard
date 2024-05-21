@@ -1,0 +1,60 @@
+
+<div class="card mb-0 container-card">
+    <div class="grid mb-3">
+        <div class="flex justify-content-between mb-3 col-7">
+            <div>
+                <span class="text-900 font-medium text-xl container-card-title">{{ container?.name }}</span>
+                <div class="">{{ container?.state }}</div>
+                <div class="flex pt-2">
+                    <div
+                        class="flex align-items-center justify-content-center border-round mr-3 container-action"
+                        [ngClass]="container.canStart ?
+                            ['can-play', 'cursor-pointer'] :
+                            'cant-play'"
+                        [ngStyle]="{width: '2rem', height: '2rem'}"
+                        (click)="startContainer(container); $event.stopPropagation()"
+                    >
+                        <i class="pi pi-play text-xl"
+                           [ngClass]="container.canStart ?
+                            ['icon-can-start',  'cursor-pointer'] :
+                            'icon-cant-start'"
+                        >
+                        </i>
+                    </div>
+                    <div
+                        class="flex align-items-center justify-content-center border-round mr-3"
+                        [ngClass]="container.canStop ?
+                            ['can-stop', 'cursor-pointer'] :
+                            'cant-stop'"
+                        [ngStyle]="{width: '2rem', height: '2rem'}"
+                        (click)="stopContainer(container); $event.stopPropagation()"
+                    >
+                        <i class="pi pi-stop text-xl"
+                           [ngClass]="container.canStop ?
+                            ['icon-can-stop',  'cursor-pointer'] :
+                            'icon-cant-stop'"
+                        >
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-5 flex align-items-start justify-content-end">
+            <div class="text-right" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <a>
+                    <span class="font-medium"
+                          [ngClass]="container.state === 'running' ? 'text-green-500' : 'text-red-500'">
+                        {{ container?.status }}
+                    </span>
+                </a>
+                <div class="p-text-secondary" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    {{ container?.image }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,127 @@
+<p-dialog header="Container Details" [(visible)]="this.isVisible" closable="true" [modal]="true"
+          [style]="{width: '80vw'}">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                       <div class="flex mb-3 col-7">
+                            <div
+                                class="flex align-items-center justify-content-center border-round mr-3 container-action card-title-icon cursor-pointer"
+                                [ngStyle]="{width: '2rem', height: '2rem'}">
+                                <i class="pi pi-box text-blue-500 text-xl"></i>
+                            </div>
+                           <div class="card-title-text">
+                               {{ container.Name }}
+                           </div>
+                       </div>
+                    </div>
+                    <div class="actions">
+                        <button pButton label="Start" icon="pi pi-play" class="button-success"></button>
+                        <button pButton label="Stop" icon="pi pi-stop" class="button-danger"></button>
+                        <button pButton label="Kill" icon="pi pi-times"></button>
+                        <button pButton label="Restart" icon="pi pi-refresh"></button>
+                        <button pButton label="Pause" icon="pi pi-pause"></button>
+                        <button pButton label="Resume" icon="pi pi-play" class="button-success"></button>
+                        <button pButton label="Remove" icon="pi pi-trash" class="button-danger"></button>
+                        <button pButton label="Recreate" icon="pi pi-clone"></button>
+                        <button pButton label="Duplicate/Edit" icon="pi pi-pencil"></button>
+                    </div>
+                </div>
+                    <div class="fluid">
+                        <div class="grid">
+                            <div class="col-12 md-3">
+                                <strong>ID</strong>
+                            </div>
+                            <div class="col-12 md-9">
+                                {{ container?.Id }}
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 md-3">
+                                <strong>Name</strong>
+                            </div>
+                            <div class="col-12 md-9">
+                                <div *ngIf="!container.edit">
+                                    {{ container.Name | trimcontainername }}
+                                    <a (click)="container.edit = true" class="text-sm">
+                                        <span class="pi pi-pen-to-square" (click)="container.edit = true"></span>
+                                    </a>
+                                </div>
+                                <div *ngIf="container.edit">
+                                    <form (ngSubmit)="renameContainer()">
+                                        <input pInputText type="text" [(ngModel)]="container.newContainerName"
+                                               name="newContainerName"/>
+                                        <button pButton icon="pi pi-times" class="text-sm"></button>
+                                        <button pButton icon="pi pi-check pi- " type="submit"></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 md-3">
+                                <strong>Status</strong>
+                            </div>
+                            <div class="col-12 md-9">
+                                {{ container.NetworkSettings.IPAddress }}
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 md-3">
+                                <strong>Status</strong>
+                            </div>
+                            <div class="col-12 md-9">
+                                <i *ngIf="container.State.Running" class="pi pi-heart" style="color: green;"></i>
+                                <i *ngIf="!container.State.Running && container.State.Status !== 'created'"
+                                   class="pi pi-heart" style="color: red;"></i>
+                                {{ container.State | getstatetext }} for {{ activityTime }}
+                                <span *ngIf="!container.State.Running && container.State.Status !== 'created'"> with exit code {{ container.State.ExitCode }}</span>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 md-3">
+                                <strong>Status</strong>
+                            </div>
+                            <div class="col-12 md-9">
+                                {{ container.Created | getisodate }}
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 md-3">
+                                <strong>Status</strong>
+                            </div>
+                            <div class="col-12 md-9">
+                                {{ container.State.StartedAt | getisodate }}
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 md-3">
+                                <strong>Status</strong>
+                            </div>
+                            <div class="col-12 md-9">
+<!--                                {{ container.State.FinishedAt | getisodate }}-->
+                                "empty"
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12">
+                                <div class="p-buttonset">
+                                    <button pButton icon="pi pi-file" label="Logs"
+                                            routerLink="/docker/containers/container/logs/{{ container.Id }}"></button>
+                                    <button pButton icon="pi pi-info" label="Inspect"
+                                            routerLink="/docker/containers/container/inspect/{{ container.Id }}"></button>
+                                    <button pButton icon="pi pi-chart-bar" label="Stats"
+                                            routerLink="/docker/containers/container/stats/{{ container.Id }}"></button>
+                                    <button pButton icon="pi pi-terminal" label="Console"
+                                            routerLink="/docker/containers/container/exec/{{ container.Id }}"></button>
+                                    <button pButton icon="pi pi-paperclip" label="Attach"
+                                            routerLink="/docker/containers/container/attach/{{ container.Id }}"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</p-dialog>

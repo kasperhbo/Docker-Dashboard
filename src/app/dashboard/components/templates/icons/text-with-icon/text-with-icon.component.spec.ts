@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContainerListComponent } from './container-list.component';
+import { TextWithIconComponent } from './text-with-icon.component';
 
-describe('ContainerListComponent', () => {
-  let component: ContainerListComponent;
-  let fixture: ComponentFixture<ContainerListComponent>;
+describe('TextWithIconComponent', () => {
+  let component: TextWithIconComponent;
+  let fixture: ComponentFixture<TextWithIconComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContainerListComponent]
+      imports: [TextWithIconComponent]
     })
     .compileComponents();
-
-    fixture = TestBed.createComponent(ContainerListComponent);
+    
+    fixture = TestBed.createComponent(TextWithIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

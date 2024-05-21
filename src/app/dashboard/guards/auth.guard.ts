@@ -11,8 +11,7 @@ export class AuthGuard {
     private router = inject(Router);
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        const isLoggedIn: boolean = this.authService.isLoggedIn();
-        console.trace('AuthGuard#canActivate called', isLoggedIn);
+        const isLoggedIn: boolean = this.authService.isAuthenticated();
 
         if (isLoggedIn) {
             return true;

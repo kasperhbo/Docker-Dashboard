@@ -15,21 +15,16 @@ import {AuthService} from "../../../services/auth.service";
     `]
 })
 export class LoginComponent {
-
-    valCheck: string[] = ['remember'];
-
     password!: string;
     username!: string;
 
     constructor(public layoutService: LayoutService, private authService: AuthService) {
-        if(this.authService.isLoggedIn()){
+        if(this.authService.isAuthenticated()){
             this.authService.logout();
         }
     }
 
     login() {
-        console.log('Email:', this.username);
-        console.log('Password:', this.password);
         this.authService.login(this.username, this.password);
     }
 }

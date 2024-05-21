@@ -13,34 +13,40 @@ import {AuthGuard} from "./dashboard/guards/auth.guard";
                     {
                         canActivate: [AuthGuard],
                         path: '',
-                        loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule)
-                    },
-
-                    {
-                        canActivate: [AuthGuard],
-                        path: 'uikit',
-                        loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule)
-                    },
-                    {
-                        canActivate: [AuthGuard],
-                        path: 'utilities',
-                        loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule)
-                    },
-                    {
-                        canActivate: [AuthGuard],
-                        path: 'documentation',
-                        loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule)
-                    },
-                    {
-                        canActivate: [AuthGuard],
-                        path: 'blocks',
-                        loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule)
-                    },
-                    {
-                        canActivate: [AuthGuard],
-                        path: 'pages',
-                        loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule)
+                        loadChildren: () => import('./dashboard/components/docker/docker.module').then(m => m.DockerModule)
                     }
+                    // ,
+                    // {
+                    //     canActivate: [AuthGuard],
+                    //     path: '',
+                    //     loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule)
+                    // },
+                    //
+                    // {
+                    //     canActivate: [AuthGuard],
+                    //     path: 'uikit',
+                    //     loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule)
+                    // },
+                    // {
+                    //     canActivate: [AuthGuard],
+                    //     path: 'utilities',
+                    //     loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule)
+                    // },
+                    // {
+                    //     canActivate: [AuthGuard],
+                    //     path: 'documentation',
+                    //     loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule)
+                    // },
+                    // {
+                    //     canActivate: [AuthGuard],
+                    //     path: 'blocks',
+                    //     loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule)
+                    // },
+                    // {
+                    //     canActivate: [AuthGuard],
+                    //     path: 'pages',
+                    //     loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule)
+                    // }
 
                 ]
             },
@@ -48,21 +54,9 @@ import {AuthGuard} from "./dashboard/guards/auth.guard";
                 path: 'auth',
                 loadChildren: () => import('./dashboard/components/auth/auth.module').then(m => m.AuthModule)
             },
-            {
-                path: 'docker',
-                loadChildren: () => import('./dashboard/components/docker/docker.module').then(m => m.DockerModule)
-            },
 
 
-            // {
-            //     path: '', component: AppLayoutComponent,
-            //     children: [
-            //         {canActivate:[AuthGuard], path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
-            //     ]
-            // },
-            // { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
-            // { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
-            // { path: '', component: AppLayoutComponent, loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
+            {canActivate: [AuthGuard], path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
             {path: 'notfound', component: NotfoundComponent},
             {path: '**', redirectTo: '/notfound'},
         ], {scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload'})

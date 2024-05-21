@@ -3,6 +3,11 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {ApiSettings} from "../settings/api-settings";
+import {jwtDecode} from "jwt-decode";
+
+interface JwtPayload {
+    exp: number;
+}
 
 @Injectable({
     providedIn: 'root',
@@ -42,23 +47,29 @@ export class AuthService {
         });
     }
 
-    isLoggedIn(): boolean {
-        return !!localStorage.getItem('token');
-    }
 
-    isAuthenticated(): Observable<boolean> {
-        return new Observable<boolean>(subscriber => {
-            subscriber.next(this.isLoggedIn());
-        });
+    isAuthenticated(): boolean{
+        if(!localStorage.getItem('token')){
+            return false;
+        }
+        return !this.isTokenExpired(localStorage.getItem('token'));
+    }
+    decodeToken(token: string): JwtPayload {
+        return jwtDecode<JwtPayload>(token);
+    }
+    isTokenExpired(token: string): boolean {
+        const decoded = this.decodeToken(token);
+        const expirationDate = new Date(0);
+        expirationDate.setUTCSeconds(decoded.exp);
+
+         return expirationDate < new Date();
     }
 
     public getHeaders(): HttpHeaders {
-        if (!this.isLoggedIn()) {
-            return new HttpHeaders({
-                'Message': 'You are not logged in.'
-            });
+        if (!this.isAuthenticated()) {
+            this.router.navigate(['/auth/login']).then(r => r);
+            return new HttpHeaders();
         }
-        console.log('Token:', localStorage.getItem('token'));
 
         const token = localStorage.getItem('token');
         if (token) {
