@@ -1,4 +1,6 @@
 import {Component, Input} from '@angular/core';
+import {TextWithIconComponent} from "../../icons/text-with-icon/text-with-icon.component";
+import {IconType} from "@ng-icons/core/lib/components/icon/icon.component";
 
 @Component({
   selector: 'template-info-panel-footer',
@@ -6,6 +8,8 @@ import {Component, Input} from '@angular/core';
   styleUrl: './info-panel-footer.component.scss'
 })
 export class InfoPanelFooterComponent {
-    @Input() label: string = 'no label';
-    @Input() icon: string = undefined;
+    @Input() label: string;
+    @Input() icon: IconType;
+    @Input() iconSize: number;
+    @Input() iconColor: string = 'primary';
 }

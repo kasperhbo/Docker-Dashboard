@@ -1,7 +1,8 @@
-<div class="with-icon-large-text">
-    <ng-icon name="bootstrapTerminal" [strokeWidth]="'2'">
-
+<div class="with-icon">
+    <ng-icon [size]="iconSize" [color]="iconColor"
+        [name]="icon">
     </ng-icon>
-
-    Sample Text
+    <span [style]="'font-size: ' + iconSize">
+        {{label}}
+    </span>
 </div>

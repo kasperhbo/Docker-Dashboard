@@ -6,6 +6,7 @@ import {InfoPanelFooterComponent} from "./info-panel/info-panel-footer/info-pane
 import {NgIcon, provideNgIconLoader} from "@ng-icons/core";
 import {HttpClient} from "@angular/common/http";
 import {TextWithIconComponent} from "./icons/text-with-icon/text-with-icon.component";
+import {SnippetComponent} from "./snippet/snippet.component";
 
 
 @NgModule({
@@ -17,9 +18,10 @@ import {TextWithIconComponent} from "./icons/text-with-icon/text-with-icon.compo
         InfoPanelComponent,
         InfoPanelRowComponent,
         InfoPanelFooterComponent,
-        TextWithIconComponent
+        TextWithIconComponent,
+        SnippetComponent
     ],
-    declarations: [InfoPanelComponent, InfoPanelRowComponent, InfoPanelFooterComponent, TextWithIconComponent],
+    declarations: [InfoPanelComponent, InfoPanelRowComponent, InfoPanelFooterComponent, TextWithIconComponent, SnippetComponent],
     providers: [
         provideNgIconLoader(name => {
             const http = inject(HttpClient);
