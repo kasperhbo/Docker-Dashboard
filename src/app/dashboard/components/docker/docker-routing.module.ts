@@ -11,6 +11,9 @@ import {RouterModule} from '@angular/router';
                 {
                     path: 'containers', loadChildren: () => import('./container/container.module').then(m => m.ContainerModule)
                 },
+                {
+                    path: 'docker', loadChildren: () => import('./gitlab/gitlab.docker.module').then(m => m.GitlabDockerModule)
+                }
             ],
         },
         {path: '**', redirectTo: '../notfound'},

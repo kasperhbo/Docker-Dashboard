@@ -145,8 +145,13 @@ export class HostConfig {
     @JsonProperty({value: 'IOMaximumIOps'})
     ioMaximumIOps: number;
 
+    @JsonProperty({value: 'Init'})
+    init: boolean;
+
     @JsonProperty({value: 'IpcMode'})
     ipcMode: string;
+
+
 
     @JsonProperty({value: 'Isolation'})
     isolation: string;

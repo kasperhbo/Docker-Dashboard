@@ -1,5 +1,5 @@
-<div class="grid mb-3">
-    <div class="col-3">
+<div class="grid mb-3 border-bottom-1  border-left-1 border-right-1 ml-1">
+    <div class="col-1 header-container pl-1 header-container">
         <ng-container *ngIf="customHeaderTemplate; else defaultHeader">
             <ng-container *ngTemplateOutlet="customHeaderTemplate; context: {$implicit: label}">
             </ng-container>
@@ -10,10 +10,7 @@
             </strong>
         </ng-template>
     </div>
-    <div class="col-9 info-panel-row-value">
-<!--        <div *ngIf="value">-->
-<!--            {{ value }}-->
-<!--        </div>-->
+    <div class="col-11 info-panel-row-value">
         <ng-container *ngIf="customValueTemplate; else defaultValue">
             <ng-container *ngTemplateOutlet="customValueTemplate; context: {$implicit: value}">
             </ng-container>

@@ -1,5 +1,18 @@
 .info-panel-row-value{
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+}
+//.grid {
+//    display: flex;
+//    align-items: center;
+//}
+//
+.header-container {
+    display: flex;
+    align-items: center;
+}
+.info-panel-row-value {
+    display: flex;
+    align-items: center;
 }

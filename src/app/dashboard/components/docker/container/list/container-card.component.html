@@ -1,4 +1,3 @@
-
 <div class="card mb-0 container-card">
     <div class="grid mb-3">
         <div class="flex justify-content-between mb-3 col-7">
@@ -7,23 +6,16 @@
                 <div class="">{{ container?.state }}</div>
                 <div class="flex pt-2">
                     <div
-                        class="flex align-items-center justify-content-center border-round mr-3 container-action p-button-success  p-button"
-                        [ngStyle]="{width: '2rem', height: '2rem'}"
                         (click)="startContainer(container); $event.stopPropagation()"
-                    >
-                        <i class="pi pi-play text-xl"
-                        >
-                        </i>
+                        [ngStyle]="{width: '2rem', height: '2rem'}"
+                        class="flex align-items-center justify-content-center border-round mr-3 container-action p-button-success  p-button">
+                        <i class="pi pi-play text-xl"></i>
                     </div>
                     <div
-                        class="flex align-items-center justify-content-center border-round mr-3  p-button-danger  p-button"
-                        [ngStyle]="{width: '2rem', height: '2rem'}"
                         (click)="stopContainer(container); $event.stopPropagation()"
-                    >
-                        <i class="pi pi-stop text-xl"
-
-                        >
-                        </i>
+                        [ngStyle]="{width: '2rem', height: '2rem'}"
+                        class="flex align-items-center justify-content-center border-round mr-3  p-button-danger  p-button">
+                        <i class="pi pi-stop text-xl"></i>
                     </div>
                 </div>
             </div>
@@ -32,8 +24,7 @@
         <div class="col-5 flex align-items-start justify-content-end">
             <div class="text-right" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                 <a>
-                    <span class="font-medium"
-                          [ngClass]="container.state === 'running' ? 'text-green-500' : 'text-red-500'">
+                    <span [ngClass]="container.state === 'running' ? 'text-green-500' : 'text-red-500'" class="font-medium">
                         {{
                             container?.status
                         }}
@@ -45,7 +36,6 @@
             </div>
         </div>
     </div>
-
 
 
 </div>
